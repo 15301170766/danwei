@@ -1,113 +1,147 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <div class="header">
+      <h1>单位体制内管理系统</h1>
+    </div>
+    <div class="Login">
+      <div class="top">
+        <h3>登录</h3>
+      </div>
+    <el-form :model="rulesForm" status-icon :rules="rules" ref="rulesForm" label-width="60px" class="demo-ruleForm">
+       <el-form-item label="账号" prop="count">
+      <el-input v-model.number="rulesForm.count"></el-input>
+    </el-form-item>
+    <el-form-item label="密码" prop="password">
+      <el-input type="password" autocomplete="off" v-model.number="rulesForm.password"></el-input>
+    </el-form-item>
+   
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('rulesForm')">提交</el-button>
+      <el-button @click="resetForm('rulesForm')">重置</el-button>
+    </el-form-item>
+  </el-form>
+    </div>
   </div>
 </template>
 
 <script>
+import { Loading } from 'element-ui';
 export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  name: 'HelloWorld', 
+   data(){
+       var CountValid = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入账号'));
+        } else {
+          if (this.rulesForm.count !== '') {
+                if (!Number.isInteger(value)) {
+                callback(new Error('请输入数字值'));
+              } 
+              callback();
+          }
+          callback();
+        }
+      };
+      var PassWordValid = (rule, value, callback) =>{
+        if(value === ""){
+          callback(new Error('请输入密码'));
+        } else {
+             if (!Number.isInteger(value)) {
+                callback(new Error('请输入数字值'));
+              }
+          callback(); 
+        }
+      }
+    return{
+            rulesForm:{
+            count:"",
+            password:""
+          },
+     //定义规则
+     rules:{
+       count:[
+         {validator:CountValid,trigger:"blur"},//定义规则
+       ],
+       password:[
+         {validator:PassWordValid,trigger:"blur"},//定义规则
+       ]
+     }
     }
-  }
+   },
+   methods:{
+     submitForm(formName){
+           this.$refs[formName].validate((valid) => {
+          if (valid) {
+            if(this.rulesForm.count === 666666 || this.rulesForm.password === 666666){
+             let LoadingLogin = Loading.service({
+                   lock: true,
+                    text: '登录成功请稍等',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+              });
+              setTimeout(() => {
+                this.$router.push({ path: '/Houtai' });//页面跳转
+                LoadingLogin.close();//loading 关闭
+              }, 2000);
+              
+            }
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+     },
+     resetForm(resetForm){
+        this.$refs[resetForm].resetFields();
+     }
+   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
+<style scoped lang="less">
+.hello{
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  background: url(../assets/timg2.jpg) no-repeat;
+  background-size:100%;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.header{
+  text-align: center;
+  padding-top: 16vh;
+  h1{
+    letter-spacing: 20px;
+    color: green;
+  }
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.Login{
+  margin-top: 10vh;
+  float: right;
+  border: 1px solid pink;
+  width: 400px;
+  // height: 400px;
+  border-radius: 20px;
+  margin-right: 180px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  padding-right: 40px;
+  box-sizing: border-box;
+  .top{
+    text-align: center;
+    margin-bottom: 20px;
+    .el-input{
+      width: 80%;
+      margin-top: 20px;
+    }
+    
+  .el-button{
+    margin-top: 20px;
+  }
+  }
+  h5{
+    margin-top: 20px;
+    text-align: center;
+    color: red;
+  }
 }
 </style>
