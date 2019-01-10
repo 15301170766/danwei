@@ -57,20 +57,24 @@
 	</div>
 </template>
 
-  <script>
-		// <!-- 引入左侧导航菜单 -->
-		import NavMenu from "./NavMenu.vue"
-    export default {
-      data() {
-        return {
-					admin_title:"管理员"
-        }
-      },
-			components:{
-				"NavMenu":NavMenu
-			},
-			   methods: {
-						open7() {
+  <script lang='ts'>
+    // <!-- 引入左侧导航菜单 -->
+    import Vue from "vue";
+    import Component from "vue-class-component";
+    import NavMenu from "./NavMenu.vue";
+  
+    @Component({
+      components:{
+        NavMenu
+      }
+    })
+    export default class Main extends Vue {
+     
+				admin_title="管理员";
+			   mounted(){
+            
+         }
+          	open7() {
 							var _that = this;
 							this.$confirm('退出后将进入登陆页面, 是否继续?', '提示', {
 								confirmButtonText: '确认',
@@ -91,7 +95,6 @@
 							});
 						}
     }
-    }
   </script>
 <style scoped="scoped" lang="less">
 	.body {
@@ -101,7 +104,7 @@
 	.el-header {
 		background-color: #506AA5;
 		color: #333;
-		text-align: center;
+		// text-align: center;
 		line-height: 60px;
 		font-family: "PingFang SC" !important;
 		//height: 200px !important;
@@ -116,9 +119,13 @@
 	
 	.el-main {
 		background-color: white;
-		color: #333;
-		text-align: center;
-		line-height: 160px;
+		// color: #333;
+		// text-align: center;
+    // line-height: 160px;
+    // background: yellow;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 	}
 	
 	.el-footer {
