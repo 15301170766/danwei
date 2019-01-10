@@ -6884,6 +6884,11 @@ ts-loader@3.1.1:
     loader-utils "^1.0.2"
     semver "^5.0.1"
 
+tslib@^1.9.3:
+  version "1.9.3"
+  resolved "http://registry.npm.taobao.org/tslib/download/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
+  integrity sha1-1+TdeSRdhUKMTX5IIqeZF5VMooY=
+
 tty-browserify@0.0.0:
   version "0.0.0"
   resolved "http://registry.npm.taobao.org/tty-browserify/download/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
@@ -7146,6 +7151,11 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-class-component@^6.2.0, vue-class-component@^6.3.2:
+  version "6.3.2"
+  resolved "http://registry.npm.taobao.org/vue-class-component/download/vue-class-component-6.3.2.tgz#e6037e84d1df2af3bde4f455e50ca1b9eec02be6"
+  integrity sha1-5gN+hNHfKvO95PRV5Qyhue7AK+Y=
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "http://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
@@ -7181,6 +7191,13 @@ vue-loader@^13.3.0:
     vue-hot-reload-api "^2.2.0"
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
+
+vue-property-decorator@^7.2.0:
+  version "7.2.0"
+  resolved "http://registry.npm.taobao.org/vue-property-decorator/download/vue-property-decorator-7.2.0.tgz#8e6b0f4dcc630c357135f76366ba7bd91f1db015"
+  integrity sha1-jmsPTcxjDDVxNfdjZrp72R8dsBU=
+  dependencies:
+    vue-class-component "^6.2.0"
 
 vue-router@^3.0.2:
   version "3.0.2"
