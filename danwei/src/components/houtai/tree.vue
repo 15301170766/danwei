@@ -9,13 +9,14 @@
       default-expand-all
       :filter-node-method="filterNode"
       ref="tree2"
+      @node-click="handleNodeClick"
     ></el-tree>
   </div>
 </template>
 <script lang='ts'>
 import Vue from "vue";
 import Component from "vue-class-component";
-import { Watch } from "vue-property-decorator";
+import { Watch,Emit } from "vue-property-decorator";
 
 import {ItreeData} from "../../service/jiekou";
  let data2s:Array<ItreeData> =[
@@ -86,7 +87,10 @@ export default class TrssClass extends Vue {
     let ss: any = this;
     ss.$refs.tree2.filter(val);
   }
-
+handleNodeClick(data,node){
+console.log(data.id);
+this.$emit('test',data.id);
+}
 
 
 

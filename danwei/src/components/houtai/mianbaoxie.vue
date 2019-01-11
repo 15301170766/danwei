@@ -28,6 +28,7 @@ export default class Mianbaoxie extends Vue {
     .Gaojing{
         width: 100%;
         // background: yellow;
+        
         .TopMenu{
             
             width: 100%;

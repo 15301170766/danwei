@@ -102,15 +102,27 @@ import Component from "vue-class-component";
 </script>
 <style scoped="scoped" lang="less">
 	.body{
-		font-size: 24px !important;
+        font-size: 24px !important;
+        color: white;
 	}
 	.menu{
-		background: #EFF3F5;
+        background: #333645;
+        
 		
 	}
 	span{
-		font-size: 14px !important;
-	}
+        font-size: 14px !important;
+        color: white;
+    }
+    .el-menu-item:hover{
+        color: #2975E6;
+    }
+    .el-submenu__title:hover{
+        span{
+            color: black;
+        }
+
+    }
 	li{
 		font-size: 12px !important;
 	}

@@ -102,7 +102,10 @@
 	}
 	
 	.el-header {
-		background-color: #506AA5;
+    // background-color: #506AA5;
+    background-color: #1F262E;
+
+    
 		color: #333;
 		// text-align: center;
 		line-height: 60px;
@@ -111,10 +114,10 @@
 	}
 	
 	.el-aside {
-		background: #EFF3F5;
+		background: #333645;
 		color: #333;
 		text-align: center;
-		height: calc(100vh - 60px);
+		// height: calc(100vh - 60px);
 	}
 	
 	.el-main {
@@ -126,10 +129,11 @@
     height: 100%;
     padding: 0;
     margin: 0;
+    overflow: hidden;
 	}
 	
 	.el-footer {
-		background-color: #2E99D5;
+		background-color: #1F262E;
 		color: #333;
 		// text-align: right;
 		height: 30px !important;
