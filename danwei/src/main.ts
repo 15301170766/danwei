@@ -9,6 +9,11 @@ import "font-awesome/css/font-awesome.min.css";
 // 引入echarts
 import echarts from "echarts";
 
+// 引用vuex
+import Vuex from "vuex";
+import store from "./store/index";
+
+
 Vue.prototype.$echarts = echarts;
 
 Vue.config.productionTip = false;
@@ -19,5 +24,6 @@ Vue.use(ElementUI);
 new Vue({
   el: "#app",
   router,
+  store,
   render: h => h(App)
 });

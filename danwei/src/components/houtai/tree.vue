@@ -1,7 +1,7 @@
 <template>
   <div class="tree">
     <el-input placeholder="输入关键字进行过滤" suffix-icon="el-icon-search" v-model="filterTexts"></el-input>
-
+    {{isShowPlayer}}
     <el-tree
       class="filter-tree"
       :data="data2"
@@ -17,6 +17,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import { Watch,Emit } from "vue-property-decorator";
+import {State,Getter,Action, Mutation, namespace} from "vuex-class";
 
 import {ItreeData} from "../../service/jiekou";
  let data2s:Array<ItreeData> =[
@@ -87,11 +88,23 @@ export default class TrssClass extends Vue {
     let ss: any = this;
     ss.$refs.tree2.filter(val);
   }
-handleNodeClick(data,node){
-console.log(data.id);
-this.$emit('test',data.id);
-}
+// handleNodeClick(data,node){
+// console.log(data.id);
+// this.$emit('test',data.id);
+// }
 
+// 改进Emit
+@Emit('test')
+handleNodeClick(data,node){
+    return data.id;
+}
+mounted () {
+    this.TestAction();
+}
+@State("isShowPlayer") isShowPlayer
+TestAction(){
+    console.log(this.isShowPlayer)
+};
 
 
   data2 = [
