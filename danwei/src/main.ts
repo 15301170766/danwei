@@ -12,7 +12,9 @@ import echarts from "echarts";
 // 引用vuex
 import Vuex from "vuex";
 import store from "./store/index";
-
+// 引用axios
+import axios from "axios";
+Vue.prototype.$ajax = axios;
 
 Vue.prototype.$echarts = echarts;
 

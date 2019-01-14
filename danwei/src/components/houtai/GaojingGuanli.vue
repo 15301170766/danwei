@@ -23,6 +23,7 @@ import Tree from "./tree.vue";
 import MainLine from "./line.vue";
 import {Watch} from "vue-property-decorator";
 
+import qs from 'qs';//引用qs，下方axios方法里，才能在使用qs.stringify（）；
 @Component({
     components:{
         Mianbaoxie,
@@ -30,9 +31,12 @@ import {Watch} from "vue-property-decorator";
         MainLine
     }
 })
-export default class GaoJing extends Vue {
+export default class GaojingGuanli extends Vue {
      Datas:Array<number>=[10, 52, 200, 334, 390, 330, 220];//竖向柱状图数据
     Data2:number=6;
+    mounted () {
+        this.testQarphql();
+    }
     ChuanZhi(){
      this.Datas=[50, 52, 50, 50, 50, 50, 50];//竖向柱状图数据
     }
@@ -40,8 +44,34 @@ export default class GaoJing extends Vue {
         this.Data2=val;
     }
 
+    testQarphql(){
+
+// console.log(recommendList)
+        
+        let aa: any = this;
+        	aa.$ajax({
+                        method: 'POST',
+                        ContentType: "application/json",
+                        url: "http://localhost:4000/graphql",
+                        data:qs.stringify({
+                            query:"{random}"
+                            })
+                    }).then(function(res){
+                        console.log(res);				
+                        //console.log(res.data.res[0]._id);
+                    
+                        
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    })	
+
+
+                        }
+
+
     @Watch("Data2")
-    haha(val,oldVal){
+    haha(val:any,oldVal:any):any{
         if(val===4){
             this.Datas=[80, 82, 80, 80, 80,80, 80];//竖向柱状图数据
             
