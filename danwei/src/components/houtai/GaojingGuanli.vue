@@ -24,6 +24,11 @@ import MainLine from "./line.vue";
 import {Watch} from "vue-property-decorator";
 
 import qs from 'qs';//引用qs，下方axios方法里，才能在使用qs.stringify（）；
+
+// apollo
+import gql from "graphql-tag";
+
+
 @Component({
     components:{
         Mianbaoxie,
@@ -39,6 +44,24 @@ export default class GaojingGuanli extends Vue {
     }
     ChuanZhi(){
      this.Datas=[50, 52, 50, 50, 50, 50, 50];//竖向柱状图数据
+
+this.$apollo
+ .query({
+   query:  gql`{random}`,
+   variables: {
+     code: this.$route.params.code
+   },
+//    client: 'api'      //如果请求不同的路径用client标识选的路径
+ })
+ .then(response => {
+     console.log(response)
+ })
+ .catch(error => {
+
+ })
+
+
+
     }
     ZiChuanfu(val){
         this.Data2=val;
@@ -85,9 +108,9 @@ export default class GaojingGuanli extends Vue {
     }
 
 }
-</script>
+</script>1
 
-<style lang="less" scope="scope">
+<style lang="less" scope="scope"> 
 .ChuanZhi{
     position: fixed;
     right: 0;

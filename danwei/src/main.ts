@@ -16,6 +16,37 @@ import store from "./store/index";
 import axios from "axios";
 Vue.prototype.$ajax = axios;
 
+
+// 安装apollo
+import { ApolloClient } from "apollo-client";
+import { HttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import VueApollo from "vue-apollo";
+
+const httpLink:any = new HttpLink({ // 配置请求路径
+  // you should use an absolute URL here
+  uri: "http://localhost:4000/graphql",
+});
+
+// create the apollo client 创建Apollo连接
+const apolloClient:any = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+  connectToDevTools: true,
+});
+
+// install the vue plugin
+Vue.use(VueApollo);
+
+const apolloProvider:any = new VueApollo({
+  defaultClient: apolloClient,
+});
+
+
+
+
+
+
 Vue.prototype.$echarts = echarts;
 
 Vue.config.productionTip = false;
@@ -26,6 +57,7 @@ Vue.use(ElementUI);
 new Vue({
   el: "#app",
   router,
+  provide: apolloProvider.provide(), // 在vue中引入
   store,
   render: h => h(App)
 });
